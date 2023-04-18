@@ -1,0 +1,270 @@
+// Page container styling
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 1140px;
+    margin: 100px auto;
+
+    .section-wrapper {
+
+
+        .main-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10%;
+
+            @media(max-width:768px) {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                max-width: unset;
+                width: 100%;
+            }
+
+
+            // Every checkbox and text styling wrapper
+            .content-wrapper {
+                display: flex;
+                flex-direction: column;
+                width: fit-content;
+
+                // Checkbox wrapper styling
+                .checkbox-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+                    padding: 0;
+                    list-style: none;
+
+                    // Direct checkbox parent styling
+                    .checkbox-inner {
+                        display: flex;
+                        align-items: center;
+                        gap: 50px;
+                    }
+
+
+                }
+
+                // Check for layout class
+                ul:not(.col) {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+
+                    @media(max-width:1140px) {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+
+                    @media(max-width:768px) {
+                        grid-template-columns: 1fr;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    // Custom Checkbox Styling
+
+    .custom-checkbox-container {
+        margin-top: -30px;
+        margin-left: 20px;
+        position: relative;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        .original-input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &:checked~.custom-checkmark {
+                background: var(--color-primary-100);
+            }
+
+            &:checked~.custom-checkmark:after {
+                display: block;
+
+            }
+        }
+
+        .custom-checkmark,
+        .disabled-ticked,
+        .disabled-blank {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 24px;
+            width: 24px;
+            border: 4px solid var(--color-primary-100);
+            background-color: transparent;
+
+            &::after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            &::after {
+                left: 8px;
+                top: 0px;
+                width: 7px;
+                height: 15px;
+                border: solid var(--color-primary-200);
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+
+        // Styles the CheckboxPartial when it is not checked
+        .not-all-checked,
+        .disabled-partial {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            height: 24px;
+            width: 24px;
+            background-color: transparent;
+
+
+            &::after {
+                content: "";
+                position: absolute;
+                width: 15px;
+                height: 4px;
+            }
+        }
+
+        .not-all-checked {
+            border: 4px solid var(--color-primary-100);
+
+            &::after {
+                background: var(--color-primary-100);
+            }
+        }
+
+        // Checkbox counter 
+        .checkbox-counter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            bottom: -30px;
+            left: -20px;
+            background: var(--color-primary-400);
+            border-radius: 50%;
+            color: var(--color-primary-200);
+        }
+
+        // Progress bar styles
+        .animate {
+            animation-name: animateCheckbox;
+            animation-duration: 0.2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        .progress[value] {
+            z-index: -1;
+            height: 32px;
+            width: 32px;
+            border-radius: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: transparent;
+
+            &::-webkit-progress-bar {
+                background: transparent;
+
+            }
+
+            &::-webkit-progress-value {
+                background: #25b0da;
+            }
+        }
+
+        // Disalbed state
+
+        .disabled-checkbox {
+            color: var(--color-primary-500);
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+            &:checked~.custom-checkmark {
+                background: var(--color-primary-100);
+            }
+
+        }
+
+
+        // partial disabled
+        .disabled-partial {
+            border: 4px solid var(--color-primary-500);
+
+            &::after {
+                background: var(--color-primary-500);
+            }
+        }
+
+        // check Disabled
+        .disabled-ticked {
+            border: 4px solid var(--color-primary-500) !important;
+
+            &::after {
+                display: block;
+                border-color: var(--color-primary-500) !important;
+            }
+        }
+
+        .disabled-blank {
+            border: 4px solid var(--color-primary-500) !important;
+        }
+
+    }
+
+
+
+    // disabled text
+
+    .disabled-text {
+        color: var(--color-primary-500);
+    }
+
+
+
+    // Font styling
+
+    .text-styles {
+        color: var(--color-primary-100);
+        font-size: 0.88rem;
+        line-height: 1rem;
+    }
+}
+
+
+@keyframes animateCheckbox {
+    0% {
+        transform: rotate(3deg);
+    }
+
+    100% {
+        transform: rotate(-7deg);
+    }
+}

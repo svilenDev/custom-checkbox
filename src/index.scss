@@ -1,0 +1,28 @@
+ @use './assets/partials/_colors.scss'as *;
+ @use './assets/partials/_styling.scss'as *;
+
+ :root {
+
+   @each $color,
+   $shades in $colors {
+
+     @each $shade,
+     $value in $shades {
+       --color-#{""+$color}-#{""+$shade}: #{$value};
+     }
+   }
+ }
+
+ body {
+   margin: 0;
+   font-family: Arial, Helvetica, sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background: var(--color-primary-200);
+   color: var(--color-primary-100);
+ }
+
+ code {
+   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+     monospace;
+ }
